@@ -486,6 +486,11 @@ h2 {
   color: var(--text);
 }
 
+.form-card select option {
+  background: #1b1715;
+  color: var(--text);
+}
+
 .contact-grid {
   align-items: stretch;
 }
