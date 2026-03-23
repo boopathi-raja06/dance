@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "echo 'Backend build step not required'",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
