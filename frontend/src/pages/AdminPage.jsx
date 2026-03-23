@@ -72,7 +72,7 @@ function AdminPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section admin-section">
         <div className="container">
           <StatusBanner type={feedback.type} message={feedback.message} />
 
