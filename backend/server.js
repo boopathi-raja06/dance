@@ -18,17 +18,36 @@ const allowedOrigins = [
   "http://127.0.0.1:5173",
 ];
 
+const isAllowedOrigin = (origin) => {
+  if (!origin) {
+    return true;
+  }
+
+  if (allowedOrigins.includes(origin)) {
+    return true;
+  }
+
+  try {
+    const { protocol, hostname } = new URL(origin);
+    return protocol === "https:" && hostname.endsWith(".vercel.app");
+  } catch {
+    return false;
+  }
+};
+
 connectDB();
 
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (isAllowedOrigin(origin)) {
         return callback(null, true);
       }
 
       return callback(new Error("Not allowed by CORS"));
     },
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    credentials: false,
   })
 );
 app.use(express.json());
