@@ -8,8 +8,13 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const configuredOrigins = (process.env.CLIENT_URLS || process.env.CLIENT_URL || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 const allowedOrigins = [
-  process.env.CLIENT_URL || "http://localhost:5173",
+  ...configuredOrigins,
+  "http://localhost:5173",
   "http://127.0.0.1:5173",
 ];
 
